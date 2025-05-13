@@ -25,10 +25,17 @@
     text-decoration: none;
 }
 
+.lostTxt{
+    font-size: 14px;
+    color:#0000007e;
+    text-decoration: none;
+
+}
+
 
 h1, h2, h3, h4 ,h5, h6, p, a,
 li, input, select, textarea, ::placeholder,
-button, span, table {
+button, span, table, label {
     font-family: "Montserrat", sans-serif!important;
     margin: 0!important;
 }
@@ -384,3 +391,41 @@ footer .addressCol li{
     font-size: 45px;
 }
 
+
+.rangerulesSec .iconCont p{
+    color:#fff;
+}
+
+.rangerulesSec img{
+    width: 100%;
+}
+
+.accordion-item{
+    border: 0px!important;
+}
+
+
+.accordion-header h3{
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.accordion-header .accordion-button{
+    background-color: #EFEFEF!important;
+}
+
+.accordion-header .accordion-button.collapsed{
+    border: 1px solid #00000017;
+    border-radius:5px!important;
+}
+
+
+.accordion-button:focus{
+    box-shadow:none!important;
+}
+
+
+.contactUsSec img{
+    height: 160px;
+    object-fit: contain;
+}
