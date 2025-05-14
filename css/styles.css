@@ -242,7 +242,7 @@ button, span, table, label {
     text-align: center;
 }
 
-.form-control{
+.form-control, .form-select{
     padding:20px 25px!important;
     background-color: #F7F7F7!important;
     border:0px!important;
@@ -428,4 +428,20 @@ footer .addressCol li{
 .contactUsSec img{
     height: 160px;
     object-fit: contain;
+}
+
+.accInfoSec h3{
+    font-weight: 700;
+    color:#000;
+    font-size: 35px;
+}
+
+
+.accInfoSec input::placeholder{
+    color: #00000052!important;
+}
+
+.accInfoSec span{
+    font-size: 13px;
+    color:#00000075;
 }
