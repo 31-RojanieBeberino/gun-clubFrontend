@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>East End Gun Club | Events</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+
+
+    <style>
+    .calendar th, .calendar td {
+      width: 14.28%;
+      text-align: center;
+      vertical-align: top;
+      height: 100px;
+      border: 1px solid #eee;
+      position: relative;
+    }
+    .event {
+      position: absolute;
+      bottom: 5px;
+      left: 5px;
+      right: 5px;
+      background-color: #e60023;
+      color: white;
+      padding: 2px 5px;
+      font-size: 0.75rem;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .event-popup {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      z-index: 10;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 15px;
+      display: none;
+      flex-direction: column;
+      gap:10px;
+      width: 300px;
+      font-size: 0.9rem;
+      text-align: left;
+      border-radius: 10px;
+    }
+    .today {
+      background-color: #00000018!important;
+      font-weight: bold;
+    }
+
+    .dayNum{
+        font-size: 20px!important;
+    }
+
+    #calendarTabs .nav-link{
+        color:#000;
+    }
+
+    @media screen and (max-width:500px) {
+        #calendarTabs .nav-link{
+            font-size: 15px;
+            padding:5px 10px;
+        }
+
+        .event{
+            font-size: 6px;
+            line-height: 1;
+        }
+    }
+  </style>
+
+
+</head>
+<body>
+    
+
+    <nav class="navbar navbar-expand-lg" style="background-color: #141346;" data-bs-theme="dark">
+        <div class="container-fluid">
+            <div class="container d-flex align-items-center justify-content-between flex-lg-nowrap flex-wrap">
+                <a class="navbar-brand" href="#">
+                    <img style="width:150px; object-fit: contain;" src="images/LogoWht2.webp">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse mt-lg-0 mt-3" id="navbarSupportedContent">
+                    <ul class="navbar-nav m-auto mb-lg-0 d-flex gap-lg-4 gap-1">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">CLUB INFORMATION</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">RANGE</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">TRAINING</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">EVENTS</a>
+                        </li>
+                        <!-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                            </a>
+                            <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li> -->
+                    </ul>
+                    <div class="d-flex gap-3 align-items-center justify-content-lg-end justify-content-between">
+                        <a class="signCol" href="#">Sign in</a>
+                        <a class="btn btn-danger" href="#" role="button">join Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+    <section class="container-fluid pt-5 pb-5 p-2 mainSection align-items-end" style="background-image: url('images/img3.webp');">
+        <div class="container" style="position: relative; z-index: 1;">
+            <div class="d-flex gap-5 align-items-lg-end">
+                <div class="w-100">
+                    <div class="titleSec" style="background-image: url('images/newImg16.webp');">
+                        <h3 class="subTitleWht-h3">Events</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section class="container-fluid pt-5 pb-5 p-2">
+        <div class="container">
+            <div class="container my-5 calendar">
+                <!-- Navigation Tabs -->
+                <ul class="nav nav-tabs justify-content-end mb-3" id="calendarTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="month-tab" data-bs-toggle="tab" data-bs-target="#month" type="button" role="tab">Month</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="week-tab" data-bs-toggle="tab" data-bs-target="#week" type="button" role="tab">Week</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="day-tab" data-bs-toggle="tab" data-bs-target="#day" type="button" role="tab">Day</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="youth-tab" data-bs-toggle="tab" data-bs-target="#youth" type="button" role="tab">Youth</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="women-tab" data-bs-toggle="tab" data-bs-target="#women" type="button" role="tab">Women</button>
+                    </li>
+                </ul>
+
+                <!-- Tab Content -->
+                <div class="tab-content" id="calendarTabContent">
+                    <!-- Month View -->
+                    <div class="tab-pane fade show active" id="month" role="tabpanel">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <button class="btn btn-light" id="prevMonth"><i class="bi bi-chevron-left"></i></button>
+                        <h3 id="monthTitle">May 2025</h3>
+                        <button class="btn btn-light" id="nextMonth"><i class="bi bi-chevron-right"></i></button>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+                        </tr>
+                        </thead>
+                        <tbody id="calendarBody">
+                        <!-- JS will render calendar -->
+                        </tbody>
+                    </table>
+                    </div>
+
+                    <!-- Week View Placeholder -->
+                    <div class="tab-pane fade" id="week" role="tabpanel">
+                    <p class="text-center my-5">[Week View Placeholder]</p>
+                    </div>
+
+                    <!-- Day View Placeholder -->
+                    <div class="tab-pane fade" id="day" role="tabpanel">
+                    <p class="text-center my-5">[Day View Placeholder]</p>
+                    </div>
+
+                    <!-- Youth View Placeholder -->
+                    <div class="tab-pane fade" id="youth" role="tabpanel">
+                    <p class="text-center my-5">[Youth View Placeholder]</p>
+                    </div>
+
+                    <!-- Women View Placeholder -->
+                    <div class="tab-pane fade" id="women" role="tabpanel">
+                    <p class="text-center my-5">[Women View Placeholder]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <footer class="container-fluid pt-5 pb-0 p-2" style="background-color: #141346;">
+        <div class="container">
+            <img class="topImg" src="images/newImg14.webp">
+            <div class="row">
+                <div class="col-lg-3 col-12 d-flex justify-content-lg-start justify-content-center align-items-center">
+                    <img class="footerLogo" src="images/FooterLogo.webp">
+                </div>
+                <div class="col-lg-6 col-12 d-flex flex-lg-row flex-column gap-3 mt-4">
+                    <ul class="d-flex flex-column gap-2 p-0" style="list-style: none;">
+                        <li><a href="#">CLUB INFORMATION</a></li>
+                        <li><a href="#">RANGE</a></li>
+                        <li><a href="#">TRAINING</a></li>
+                        <li><a href="#">EVENTS</a></li>
+                    </ul>
+                    <ul class="d-flex flex-column gap-2 ps-lg-3 p-0" style="list-style: none;">
+                        <li><a href="#">Rifle Range</a></li>
+                        <li><a href="#">Shotgun</a></li>
+                        <li><a href="#">Muzzle Loader</a></li>
+                    </ul>
+                    <ul class="d-flex flex-column gap-2 ps-lg-3 p-0" style="list-style: none;">
+                        <li><a href="#">Archery</a></li>
+                        <li><a href="#">Pistol Bays</a></li>
+                        <li><a href="#">Action Shooting</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-12">
+                    <ul class="addressCol d-flex flex-column gap-2 align-items-lg-end align-items-center p-0" style="list-style: none;">
+                        <li>Range Address:</li>
+                        <li>251 County 564 Rd.</li>
+                        <li>Milton-Freewater, OR. 97862</li>
+                    </ul>
+                    <ul class="addressCol d-flex flex-column gap-2 align-items-lg-end align-items-center p-0" style="list-style: none;">
+                        <li>mailing Address:</li>
+                        <li>PO Box 251</li>
+                        <li>Milton-Freewater, OR 97862</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row btmSec">
+                <div class="col-lg-4 col-12 d-flex align-items-center justify-content-lg-start justify-content-center p-0">
+                    <p>Copyright © 2025  East End Rod And Gun Club . All Rights Reserved. </p>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <ul class="d-flex gap-5 p-0 justify-content-center m-0" style="list-style: none;">
+                        <li><a href="#">Terms Of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-12">
+                    <ul class="d-flex gap-2 socialIcon m-0 justify-content-end justify-content-lg-start justify-content-center p-0 mt-lg-0 mt-2" style="list-style: none;">
+                        <li><a href="#"><i class="bi bi-linkedin"></i></a></li>
+                        <li><a href="#"><i class="bi bi-facebook"></i></a></li>
+                        <li><a href="#"><i class="bi bi-instagram"></i></a></li>
+                        <li><a href="#"><i class="bi bi-twitter"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+    <!-- Bootstrap Bundle JS (includes Popper.js for dropdowns/tooltips) -->
+    <script src="js/scripts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
