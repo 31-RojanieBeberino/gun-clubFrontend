@@ -78,3 +78,22 @@ document.getElementById("nextMonth").addEventListener("click", () => {
 });
 
 renderCalendar(currentDate);
+
+
+
+$(document).ready(function() {
+  $('.btn-minus').click(function() {
+    let $input = $(this).siblings('.quantity-input');
+    let value = parseInt($input.val()) || 1;
+    let min = parseInt($input.attr('min')) || 1;
+    if (value > min) {
+      $input.val(value - 1);
+    }
+  });
+
+  $('.btn-plus').click(function() {
+    let $input = $(this).siblings('.quantity-input');
+    let value = parseInt($input.val()) || 1;
+    $input.val(value + 1);
+  });
+});
